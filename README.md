@@ -24,8 +24,8 @@ API sederhana untuk mengecek ongkos kirim menggunakan Express.js dan Axios.
 3. Buat file `.env` dan tambahkan konfigurasi berikut:
 
    ```env
-   API_KEY=your_shipping_api_key
-   BASE_URL=https://api.shipping.com
+   API_KEY=your_api_key
+   BASE_URL=https://rajaongkir.komerce.id/api/v1
    PORT=5000
    ```
 
@@ -43,28 +43,40 @@ API sederhana untuk mengecek ongkos kirim menggunakan Express.js dan Axios.
 
 **Endpoint:**
 ```http
-GET /api/cities
+GET /api/ongkir-destination
+```
+
+**Request Body:**
+```json
+{
+  "origin": "id",
+}
 ```
 
 **Response:**
 ```json
-[
-  {
-    "city_id": "1",
-    "city_name": "Jakarta"
-  },
-  {
-    "city_id": "2",
-    "city_name": "Bandung"
-  }
-]
+{
+  "status": 200,
+  "data": [
+      {
+        "id": 4816,
+        "label": "-, BANDUNG, BANDUNG, JAWA BARAT, 40614",
+        "province_name": "JAWA BARAT",
+        "city_name": "BANDUNG",
+        "district_name": "BANDUNG",
+        "subdistrict_name": "-",
+        "zip_code": "40614"
+      }
+    ],
+  "message": "Success"
+}
 ```
 
 ### 2. Mengecek Ongkos Kirim
 
 **Endpoint:**
 ```http
-POST /api/shipping-cost
+POST /api/onfkir-cost
 ```
 
 **Request Body:**
