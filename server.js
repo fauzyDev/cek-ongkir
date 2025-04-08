@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     response(200, { connect: true }, 'API cek ongkir Ready!🚀', res)
 })
 
-app.use("/api",router);
+app.use("/api", router);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

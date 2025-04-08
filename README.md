@@ -11,7 +11,7 @@ API sederhana untuk mengecek ongkos kirim menggunakan Express.js dan Axios.
 1. Clone repository ini:
 
    ```bash
-   git clone https://github.com/username/cek-ongkir-api.git
+   git clone https://github.com/fauzyDev/cek-ongkir.git
    cd cek-ongkir-api
    ```
 
@@ -39,7 +39,33 @@ API sederhana untuk mengecek ongkos kirim menggunakan Express.js dan Axios.
 
 ## Endpoint
 
-### 1. Mendapatkan Daftar Kota
+### 1. Mendapatkan API Key
+
+**Endpoint:**
+```http
+GET /api/generate-api-key
+```
+
+**Response:**
+```json
+{
+    "status": 200,
+    "data": {
+        "api_key": "your_api_key"
+    },
+    "message": "Sucess"
+}
+```
+
+### Gunakan API Key pada headers
+
+```json
+{
+  "token-api": "your_token", 
+}
+```
+
+### 2. Mendapatkan Daftar Kota/Kabupaten/Provinsi
 
 **Endpoint:**
 ```http
@@ -49,7 +75,7 @@ GET /api/ongkir-destination
 **Request Body:**
 ```json
 {
-  "origin": "id",
+  "search": "jakarta", // isi dengan nama kota/kabupaten/provinsi
 }
 ```
 
@@ -68,23 +94,28 @@ GET /api/ongkir-destination
         "zip_code": "40614"
       }
     ],
-  "message": "Success"
+  "message": "Sucess"
 }
 ```
 
-### 2. Mengecek Ongkos Kirim
+### 3. Mengecek Ongkos Kirim
 
 **Endpoint:**
 ```http
-POST /api/onfkir-cost
+POST /api/ongkir-cost
 ```
 
 **Request Body:**
+
+  Content-Type: application/x-www-form-urlencoded
+
 ```json
 {
-  "origin": "1",
-  "destination": "2",
-  "weight": 1000
+  "origin": "4816", // id kota/kabupaten/provinsi asal
+  "destination": "4868", // id kota/kabupaten/provinsi tujuan
+  "weight": 1000, // example 1000 = 1kg
+  "courier": "jne", // jne:sicepat:jnt
+  "price": "lowest" // default lowest, lowest/higher
 }
 ```
 
